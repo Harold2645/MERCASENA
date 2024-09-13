@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if mensaje%}
+        <h1>{{mensaje}}</h1>
+    {% else %}
+        {% for producto in productos %}
+            <div>
+                <p id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</p>
+                <img width="200" src="uploads/{{producto.imagen_producto}}" alt="">
+                <p>Emprendedor: {{producto.emprendedor_unidad}}</p>
+                <p>{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
+                <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
+                <input type="text" id="cantida_{{producto.codigo_unidad}}" value="0">
+                <button>+</button>
+                <button>-</button>
+            </div>
+        {% endfor %}
+    {% endif %}
+            
+
+</body>
+</html>
