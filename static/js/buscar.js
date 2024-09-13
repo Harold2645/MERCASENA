@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await respuesta.json();
         console.log("Respuesta:", result)
 
-
     })
 
 
