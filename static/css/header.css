@@ -1,0 +1,82 @@
+@font-face{
+    font-family: 'work';
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.ttf);
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.woff),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family: 'calibri';
+    src: url(../fuentes/tipografiasecundaria/CalibriRegular.ttf);
+    src: url(../fuentes/tipografiasecundaria/Calibri-Regular.woff),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'work', 'calibri';
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+body {
+    font-family: 'work', 'calibri';
+    font-size: 13px;
+}
+html, body{
+    margin: 0;
+    padding: 0;
+}
+figure{
+    padding: 0;
+    margin: 0;
+}
+header#header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #39A900;
+}
+#rayita{
+    height: 55px;
+    border: 1px solid white;
+    margin: 10px;
+}
+#contenedortitulo{
+    display: flex;
+    align-items: center;
+    color: white;
+    animation: slide-in 0.4s ease-in;
+    padding: 10px;
+}
+figure#header_logo{
+    width: 55px;
+    height: 55px;
+}
+#logo_sena{
+    width: 100%;
+}
+
+#cuerpo2{
+    display: flex;
+}
+
+.cartas{
+    padding: 15px;
+    grid-template-columns: repeat(2, 320px);
+    gap: 35px;
+}
+
+    .cantidad{
+        display: flex;
+    }
+    .inputs_numeros{
+        border: none;
+    }

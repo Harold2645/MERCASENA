@@ -3,26 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
+    <script src="../static/js/cantidad.js"></script>
+    <script src="../static/js/buscar.js"></script>
+    <title>MERCASENA</title>
 </head>
 <body>
-    {% if mensaje%}
-        <h1>{{mensaje}}</h1>
-    {% else %}
-        {% for producto in productos %}
-            <div>
-                <p id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</p>
-                <img width="200" src="uploads/{{producto.imagen_producto}}" alt="">
-                <p>Emprendedor: {{producto.emprendedor_unidad}}</p>
-                <p>{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
-                <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
-                <input type="text" id="cantida_{{producto.codigo_unidad}}" value="0">
-                <button>+</button>
-                <button>-</button>
+    <header id="header">
+        <div id="contenedortitulo">
+            <figure id="header_logo">
+                <img src="../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+            </figure>
+            <div id="rayita">
             </div>
-        {% endfor %}
-    {% endif %}
+            <div id="contenidotitulo">
+                <h2 id="titulo">SENA</h2>
+                <div id="contenidonombre">
+                    <h3>MERCASENA</h3>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="cuerpo">
+
+        <input type="text" name="buscar" id="buscar">
+        <div id="cuerpo2">
             
+        {% if mensaje%}
+            <h1>{{mensaje}}</h1>
+        {% else %}
+            {% for producto in productos[:4] %}
+                <div class="cartas">
+                    <p id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</p>
+                    <img width="200" src="uploads/{{producto.imagen_producto}}" alt="{{producto.nombre_producto}}">
+                    <p>Emprendedor: {{producto.emprendedor_unidad}}</p>
+                    <p>{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
+                    <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
+                    <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">
+                    <div class="contenedor_cantidad">
+                        <div class="cantidad">
+                            <button id="resta_{{producto.codigo_unidad}}">-</button>
+                            <input type="text" class="inputs_numeros" id="cantida_{{producto.codigo_unidad}}" readonly value="0">
+                            <button id="suma_{{producto.codigo_unidad}}">+</button>
+                        </div>
+                        $
+                        <input type="text" class="inputs_numeros" id="subtotal_{{producto.codigo_unidad}}"  readonly value="0" >
+                    </div>
+                    <button id="carrito_{{producto.codigo_unidad}}">Agregar al Carrito</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    
+    </div>
+
+
+        <section id="carrito">
+            <h2>Carrito de Compras</h2>
+            <div id="carritoContenido"></div>
+            <div id="totalCarrito"><h3>Total: $0.00</h3></div> <!-- Aquí se mostrará el total -->
+
+        </section>
+
+    </main>
+            
+    <footer>ADSO-CAB-2024</footer>
 
 </body>
 </html>
