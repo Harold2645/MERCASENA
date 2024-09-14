@@ -18,13 +18,12 @@ def uploads(nombre):
 @app.route('/buscarproducto', methods=['POST'])
 def buscarproducto():
     data = request.get_json()
-    print(data)
     if len(data)>0:
         resultado = producto.consultar_productos_busqueda(data)
         if resultado:
             return resultado
         else:
-            return "No existe"
+            return jsonify("No existe")
     else:
         return "Error"
 

@@ -64,8 +64,37 @@ figure#header_logo{
     width: 100%;
 }
 
-#cuerpo2{
+#cont_carrito{
+    color: white;
+    padding: 10px;
     display: flex;
+    align-items: center;
+}
+#cont_carrito p{
+    display: none;
+}
+#cont_carrito i{
+    font-size: 35px;
+    cursor: pointer;
+}
+
+#cuerpo{
+    display: block;
+}
+
+.oculto {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+
+#carrito{
+    display: none;
+}
+#vermenos{
+    display: none;
 }
 
 .cartas{
@@ -80,3 +109,119 @@ figure#header_logo{
     .inputs_numeros{
         border: none;
     }
+
+section#carrito{
+    position: absolute;
+    color: white;
+    background-color: #39A900;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 0%;
+    overflow-x: hidden;
+}
+
+section#carrito.visible{
+    width: 100%;
+    animation: aparicion 0.5s ease-in-out;
+}
+section#carrito.remove{
+    animation: desaparicion 0.5s ease-in-out;
+}
+
+@keyframes aparicion{
+    0%{
+        width: 0;
+    }
+
+    100%{
+        width: 100%;
+    }
+
+}
+@keyframes desaparicion{
+    0%{
+        width: 100%;
+    }
+
+    100%{
+        width: 0;
+    }
+
+}
+
+    section#carrito #carrito_hambu{
+        display: flex;   
+        align-items: center;
+        gap: 10px;
+    }
+    #cont_miniheader{
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #cont_miniheader i#cerrar{
+        font-size: 20px;
+    }
+    #cont_miniheader #carrito_miniheader{
+        font-size: 35px;
+    }
+
+
+@media only screen and (min-width: 768px){
+    section#carrito.visible{
+        width: 512px;
+    }
+    @keyframes aparicion{
+        0%{
+            width: 0;
+        }
+    
+        100%{
+            width: 512px;
+        }
+    
+    }
+    @keyframes desaparicion{
+        0%{
+            width: 512px;
+        }
+    
+        100%{
+            width: 0;
+        }
+    
+    }
+}
+
+@media only screen and (min-width: 1366px){
+    #cont_carrito p{
+        display: flex;
+        font-size: 1.5em;
+        padding: 10px;
+    }
+    section#carrito.visible{
+        width: 412px;
+    }
+    @keyframes aparicion{
+        0%{
+            width: 0;
+        }
+    
+        100%{
+            width: 412px;
+        }
+    
+    }
+    @keyframes desaparicion{
+        0%{
+            width: 412px;
+        }
+    
+        100%{
+            width: 0;
+        }
+    
+    }
+}
