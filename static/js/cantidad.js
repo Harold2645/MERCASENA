@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     productos.forEach(producto => {
         const codigoUnidad = producto.querySelector('.inputs_numeros').id.split('_')[1];
         console.log(codigoUnidad)
-        const inputCantidad = document.getElementById(`cantida_${codigoUnidad}`);
-        const maxCantidad = document.getElementById(`cantidad_${codigoUnidad}`);
+        const inputCantidad = document.getElementById(`cantidad_${codigoUnidad}`);
+        const maxCantidad = document.getElementById(`stock_${codigoUnidad}`);
         const inputSubtotal = document.getElementById(`subtotal_${codigoUnidad}`);
         const btnSuma = document.getElementById(`suma_${codigoUnidad}`);
         const btnResta = document.getElementById(`resta_${codigoUnidad}`);

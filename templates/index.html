@@ -42,17 +42,17 @@
                     <p>Emprendedor: {{producto.emprendedor_unidad}}</p>
                     <p>{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
                     <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
-                    <input type="hidden" id="cantidad_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">
+                    <input type="hidden" id="stock_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">
                     <div class="contenedor_cantidad">
                         <div class="cantidad">
                             <button id="resta_{{producto.codigo_unidad}}">-</button>
-                            <input type="text" class="inputs_numeros" id="cantida_{{producto.codigo_unidad}}" readonly value="0">
+                            <input type="text" class="inputs_numeros" id="cantidad_{{producto.codigo_unidad}}" readonly value="0">
                             <button id="suma_{{producto.codigo_unidad}}">+</button>
                         </div>
                         $
                         <input type="text" class="inputs_numeros" id="subtotal_{{producto.codigo_unidad}}"  readonly value="0" >
                     </div>
-                    <button id="carrito_{{producto.codigo_unidad}}">Agregar al Carrito</button>
+                    <button id="carrito_{{producto.codigo_unidad}}" class="btn_carrito">Agregar al Carrito</button>
                 </div>
             {% endfor %}
         {% endif %}
@@ -60,10 +60,10 @@
     </div>
 
 
-        <section id="carrito">
+        <section id="carrito" style="display: none;">
             <h2>Carrito de Compras</h2>
             <div id="carritoContenido"></div>
-            <div id="totalCarrito"><h3>Total: $0.00</h3></div> <!-- Aquí se mostrará el total -->
+            <div id="totalCarrito"></div> 
 
         </section>
 
