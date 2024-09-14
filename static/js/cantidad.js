@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btnResta.addEventListener('click', () => {
             let cantidad = parseInt(inputCantidad.value);
-            if (cantidad > 0) {
+            if (cantidad > 1) {
                 cantidad--;
                 inputCantidad.value = cantidad;
                 inputSubtotal.value = (cantidad * precio);
