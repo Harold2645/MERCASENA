@@ -120,4 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
         totalCarrito.innerText = `Total: $${carrito.total}`;
     };
 
+    const abrirCarrito = document.querySelector('.abrir_carrito');
+    abrirCarrito.addEventListener('click', ()=>{
+        ver_carrito();
+    });
+
 });

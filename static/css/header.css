@@ -109,6 +109,9 @@ figure#header_logo{
     .inputs_numeros{
         border: none;
     }
+#forma_registro{
+    display: none;
+}
 
 section#carrito{
     position: absolute;
