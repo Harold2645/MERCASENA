@@ -1,5 +1,6 @@
 from conexion import *
 from models.productos import producto
+from routes.compras import *
 
 @app.route('/')
 def index():

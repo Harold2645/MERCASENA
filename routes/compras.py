@@ -8,3 +8,4 @@ def registrar_compra():
     if not cliente.consultar_cliente(carrito['cliente']['correo']):
         cliente.agregar_cliente(carrito['cliente'])
     compra.agregar_compra(carrito['codigo'], carrito['cliente']['correo'], carrito['productos'], carrito['total'])
+    return "si sirve"

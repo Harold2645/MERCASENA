@@ -170,14 +170,23 @@ document.addEventListener('DOMContentLoaded', () => {
             carrito.cliente['nombre'] = nombre;
             carrito.cliente['movil'] = movil;
 
-            console.log(carrito)
             enviarCarrito();
         };
-
-    };
-
-    function enviarCarrito(){
         
+    };
+    
+    async function enviarCarrito(){
+        console.log(carrito)
+        const respuesta = await  fetch('http://192.168.0.8:5080/registrarCompra', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(carrito), // Convierte el objeto a JSON
+                
+            });
+            
+            const result = await  respuesta.text();
     };
 
 
