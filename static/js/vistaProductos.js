@@ -19,12 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     btnVermenos.addEventListener('click', ()=>{
-        for (let i = 0; i < productos.length ; i++) {
+        for (let i = 8; i < productos.length ; i++) {
             document.getElementById(productos[i].id).style.display='none';
-        };
-
-        for (let i = 0; i < 8; i++) {
-            document.getElementById(productos[i].id).style.display='block';
         };
 
         btnVermenos.style.display = 'none';
