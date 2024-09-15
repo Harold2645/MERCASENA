@@ -9,13 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const carrito = {
         codigo: codigo,
-        cliente: {correo: '', nombre: '', movil: ''},
+        cliente: {},
         productos: [],
         total: 0
        
     };
 
     const btns_carrito = document.querySelectorAll('.btn_carrito');
+    const formulario = document.getElementById('forma_registro');
+    const abrirCarrito = document.querySelector('.abrir_carrito');
 
     btns_carrito.forEach(btn=> {
         const codigoUnidad = btn.id.split('_')[1];
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    function ver_carrito(){
+    function verCarrito(){
         const carritoPrincipal = document.getElementById('carrito');
         const carritoContenido = document.getElementById('carritoContenido');
         const totalCarrito = document.getElementById('totalCarrito');
@@ -113,16 +115,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const btnConfirmar = document.querySelector('#confirmar_carrito');
             btnConfirmar.addEventListener('click', ()=>{
-                const formulario = document.getElementById('forma_registro')
                 formulario.style.display = 'block';
+
             });
         }; 
-        totalCarrito.innerText = `Total: $${carrito.total}`;
+        totalCarrito.textContent = `Total: $${carrito.total}`;
     };
 
-    const abrirCarrito = document.querySelector('.abrir_carrito');
+    function validarFormulario(event){
+
+        event.preventDefault();
+
+        const inputCorreo = document.getElementById('correo_cliente');
+        const inputNombre = document.getElementById('nombre_cliente');
+        const inputMovil = document.getElementById('movil_cliente')
+        const errorCorreo = document.getElementById('error_correo');
+        const errorNombre = document.getElementById('error_nombre');
+        const errorMovil = document.getElementById('error_movil');
+
+        errorCorreo.textContent = '';
+        errorNombre.textContent = '';
+        errorMovil.textContent = '';
+
+        let patternCorreo = /^[A-Za-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(inputCorreo.value);
+        let patternNombre = /^[A-Za-z ]{2,100}$/.test(inputNombre.value);
+        let patternMovil = /^[0-9]{10,10}$/.test(inputMovil.value);
+
+        let datosCorrectos = true;
+
+        if(!patternCorreo){
+            errorCorreo.textContent = 'El correo electronico debe coincidir con este formato: example@dominio.com';
+            datosCorrectos = false;
+        }
+
+        if(!patternNombre){
+            errorNombre.textContent = 'Solo se permiten letras y espacios';
+            datosCorrectos = false;
+        }
+
+        if(!patternMovil){
+            errorMovil.textContent = 'Solo se permiten números de 10 digitos';
+            datosCorrectos = false;
+        }
+
+        if(datosCorrectos){
+    
+            let regex = /(^\w{1})|(\s+\w{1})/g;
+
+            let correo = inputCorreo.value.toLowerCase();
+            let nombre = inputNombre.value.replace(regex, letra => letra.toUpperCase()).trim();
+            let movil = inputMovil.value;
+
+            carrito.cliente['correo'] = correo;
+            carrito.cliente['nombre'] = nombre;
+            carrito.cliente['movil'] = movil;
+
+            console.log(carrito)
+        }
+
+    }
+
+    function enviarCarrito(){
+        
+    };
+
+
+    formulario.addEventListener('submit', validarFormulario)
+
     abrirCarrito.addEventListener('click', ()=>{
-        ver_carrito();
+        verCarrito();
     });
 
 });
