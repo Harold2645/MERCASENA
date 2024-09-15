@@ -15,12 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const productos = document.querySelectorAll('.cartas');
     const btnVermas = document.getElementById('ver_mas');
     const btnVermenos = document.getElementById('ver_menos');
-    console.log(productos);
+
     console.log(nver);
 
-    for (let i = 0; i < nver; i++) {
-        document.getElementById(productos[i].id).style.display='block';
-    };
+    if(productos.length <= nver){
+        for (let i = 0; i < productos.length; i++) {
+            document.getElementById(productos[i].id).style.display='block';
+        };
+
+        btnVermas.style.display = 'none';
+    }else{
+        for (let i = 0; i < nver; i++) {
+            document.getElementById(productos[i].id).style.display='block';
+        };
+    }
 
     btnVermas.addEventListener('click', ()=>{
         for (let i = nver; i < productos.length; i++) {
