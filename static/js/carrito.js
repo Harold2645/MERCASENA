@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 cantidadProducto.value = 1;
                 subtotalProducto.value = precioProducto;
-                console.log(carrito)
             } else {
                 alert("Debe seleccionar al menos una cantidad mayor a 0");
             }
@@ -176,17 +175,28 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     async function enviarCarrito(){
-        console.log(carrito)
         const respuesta = await  fetch('http://192.168.0.8:5080/registrarCompra', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(carrito), // Convierte el objeto a JSON
+                body: JSON.stringify(carrito), 
                 
             });
             
-            const result = await  respuesta.text();
+            const result = await  respuesta.json();
+
+            let mensaje = ''
+
+            if (Array.isArray(result)) {
+                result.forEach(produc => {
+                    mensaje += `- ${produc.nombre}\n`;
+                });
+            } else {
+                mensaje += "Te llegara un correo";
+            }
+            alert(mensaje);
+
     };
 
 

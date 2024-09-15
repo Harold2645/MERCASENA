@@ -28,5 +28,16 @@ class Productos:
                 return False
             else:
                 return [dict(zip(nombres_columnas, resultado)) for resultado in resultados]
+            
+    def consulta_cantidad(self, cantidad):
+        sql = f"SELECT codigo_unidad, nombre_producto, cantidad_disponible FROM productos WHERE codigo_unidad = '{cantidad}'"
+        self.cursor.execute(sql)
+        res = self.cursor.fetchone()
+        return res
+    
+    def restar_cantidad(self, codigo):
+        sql = f"UPDATE productos SET cantidad_disponible = {codigo[1]} WHERE codigo_unidad = '{codigo[0]}'"
+        self.cursor.execute(sql)
+        self.db.commit()
 
 producto = Productos(db)
