@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <script src="../static/js/vistaProductos.js"></script>
     <script src="../static/js/cantidad.js"></script>
     <script src="../static/js/buscar.js"></script>
     <script src="../static/js/carrito.js"></script>
@@ -69,44 +70,13 @@
 
         <input type="text" name="buscar" id="buscar">
 
-        <div id="cuerpo1" class="cuerpo oculto" >
-        </div>
 
-        <div id="cuerpo2" class="cuerpo visible">
-            
-            {% if mensaje%}
-                <h1>{{mensaje}}</h1>
-            {% else %}
-                {% for producto in productos[:8] %}
-                    <div class="cartas">
-                        <p id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</p>
-                        <img width="200" src="uploads/{{producto.imagen_producto}}" alt="{{producto.nombre_producto}}">
-                        <p>Emprendedor: {{producto.emprendedor_unidad}}</p>
-                        <p>{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
-                        <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
-                        <input type="hidden" id="stock_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">
-                        <div class="contenedor_cantidad">
-                            <div class="cantidad">
-                                <button id="resta_{{producto.codigo_unidad}}">-</button>
-                                <input type="text" class="inputs_numeros" id="cantidad_{{producto.codigo_unidad}}" readonly value="1">
-                                <button id="suma_{{producto.codigo_unidad}}">+</button>
-                            </div>
-                            $
-                            <input type="text" class="inputs_numeros" id="subtotal_{{producto.codigo_unidad}}"  readonly value="{{producto.precio_producto}}" >
-                        </div>
-                        <button id="carrito_{{producto.codigo_unidad}}" class="btn_carrito">Agregar al Carrito</button>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        
-        </div>
-
-        <div id="cuerpo3" class="cuerpo oculto">
+        <div id="cuerpo1">
             {% if mensaje%}
                 <h1>{{mensaje}}</h1>
             {% else %}
                 {% for producto in productos %}
-                    <div class="cartas">
+                    <div class="cartas" id="carta_{{producto.codigo_unidad}}" style="display: none;">
                         <p id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</p>
                         <img width="200" src="uploads/{{producto.imagen_producto}}" alt="{{producto.nombre_producto}}">
                         <p>Emprendedor: {{producto.emprendedor_unidad}}</p>
@@ -129,8 +99,11 @@
 
         </div>
 
-        <button id="vermas">Ver Más</button>
-        <button id="vermenos">Ver Menos</button>
+        <div class="cuerpo2"></div>
+        <div class="cuerpo3"></div>
+
+        <button id="ver_mas">Ver Más</button>
+        <button id="ver_menos" style="display: none;">Ver Menos</button>
 
     </main>
             

@@ -1,13 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const productos = document.querySelectorAll('.cartas'); 
 
-    cantidad()
-
-});
-
-function cantidad(){
-    const productosVisibles = document.querySelectorAll('.visible .cartas'); 
-
-    productosVisibles.forEach(producto => {
+    productos.forEach(producto => {
         const codigoUnidad = producto.querySelector('.inputs_numeros').id.split('_')[1];
         const inputCantidad = document.getElementById(`cantidad_${codigoUnidad}`);
         const maxCantidad = document.getElementById(`stock_${codigoUnidad}`);
@@ -38,4 +32,7 @@ function cantidad(){
             }
         });
     });
-}
+
+});
+
+    
