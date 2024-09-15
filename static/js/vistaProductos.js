@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     btnVermas.addEventListener('click', ()=>{
-        for (let i = 0; i < productos.length; i++) {
+        for (let i = 8; i < productos.length; i++) {
             document.getElementById(productos[i].id).style.display='block';
         };
 
