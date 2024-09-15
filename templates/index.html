@@ -78,7 +78,9 @@
                 {% for producto in productos %}
                     <div class="cartas" id="carta_{{producto.codigo_unidad}}" style="display: none;">
                         <p id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</p>
-                        <img width="200" src="uploads/{{producto.imagen_producto}}" alt="{{producto.nombre_producto}}">
+                        <figure id="cont_img">
+                            <img src="uploads/{{producto.imagen_producto}}" alt="{{producto.nombre_producto}}" id="img_bd">
+                        </figure>
                         <p>Emprendedor: {{producto.emprendedor_unidad}}</p>
                         <p>{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
                         <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">

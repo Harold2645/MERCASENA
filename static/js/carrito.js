@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             break;
                         };
                     };
-                    ver_carrito(); 
+                    verCarrito();
                 });
             });
 
