@@ -171,9 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
             carrito.cliente['movil'] = movil;
 
             console.log(carrito)
-        }
+            enviarCarrito();
+        };
 
-    }
+    };
 
     function enviarCarrito(){
         
