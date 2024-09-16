@@ -2,11 +2,11 @@ from conexion import *
 from models.compras import compra
 from models.clientes import cliente
 from models.productos import producto
+from routes.correo import *
 
 @app.route('/registrarCompra', methods=['POST'])
 def registrar_compra():
     carrito = request.get_json()
-    print(carrito)
     productosi = []
     productosno = []
     total = 0
@@ -21,20 +21,27 @@ def registrar_compra():
             info = [codigo, resta]
             producto.restar_cantidad(info)
             productosi.append(produc)
+            total = total + produc['subtotal']
         else:
-            productosno.append(produc)
+            productosno.append(productosi)
+
+    compra.agregar_compra(carrito['codigo'], carrito['cliente']['correo'], productosi, total)
+    resul = compra.consulta_productos(carrito['codigo'])
+    enviocorreo(resul)
+    
     if productosno:
         return jsonify(productosno)
     
+
     return jsonify({'Respuesta': "Te llegara un Correo"})
+    # return redirect (f"/envio/{carrito['codigo']}") 
 
 
     
-    # compra.agregar_compra(carrito['codigo'], carrito['cliente']['correo'], carrito['productos'], carrito['total'])
-    # return "Sirvio"
+@app.route('/envio/<codigo>')
+def envio(codigo):
+    resul = compra.consulta_productos(codigo)
+    return render_template('correo.html', productos = resul)
 
 
 
-
-
-    # return redirect (f"/enviocorreo/{carrito['codigo']}") 

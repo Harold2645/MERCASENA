@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let ventana_ancho = window.innerWidth;
     let ventana_alto = window.innerHeight;
 
-    if (ventana_ancho <= 873 && ventana_alto <=393){
+    if (ventana_ancho <= 393 && ventana_alto <=873){
         nver = 4
     }else if (ventana_ancho <= 1024 && ventana_alto <= 768 && ventana_ancho >= 873 && ventana_alto >=393){
         nver = 6

@@ -79,7 +79,10 @@ figure#header_logo{
 }
 
 #cuerpo{
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .oculto {
@@ -98,11 +101,11 @@ figure#header_logo{
 }
 
 div#cuerpo1{
-    background-color: #39A900;
     padding: 15px;
     display: grid;
     grid-template-columns: repeat(2, 150px);
-    gap: 35px;
+    gap: 5px;
+    font-size: 9px;
 }
 
 #cont_img{
@@ -116,15 +119,74 @@ div#cuerpo1{
 }
 
 .cartas{
-    background-color: blueviolet;
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+}
+    .cartas h2{
+        margin: 0;
+        padding-bottom: 10px;
+    }
+
+.contenedor_cantidad{
+    display: flex;
+    border-radius: 5px;
+}
+
+#cont_info{
+    height: 70px;
+    width: 100%;
+    text-align: center;
 }
 
     .cantidad{
         display: flex;
+        align-items: center;
+        background-color: gray;
+        padding: 0 3px;
+        border-radius: 2px;
+        margin-right: 3px;
     }
+        .cantidad button{
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            height: 70%;
+        }
+            .cantidad button i{
+                font-size: 5px;      
+            }
+    #cont_subtotal{
+        display: flex;
+        align-items: center;
+        border: none;
+        border: 1px solid black;
+        padding: 1px;
+        border-radius: 2px;
+    }    
     .inputs_numeros{
         border: none;
+        background: none;
+        width: 100%;
     }
+    .inputs{
+        width: 20px;
+        text-align: center;
+        background: none;
+        border: none;
+    }
+
+.btn_carrito{
+    margin-top: 10px;
+    color: white;
+    background-color: #00324D;
+    border: none;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 5px;
+}
 #forma_registro{
     display: none;
 }
@@ -141,6 +203,7 @@ section#carrito{
 }
 
 section#carrito.visible{
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
     width: 100%;
     animation: aparicion 0.5s ease-in-out;
 }
@@ -189,6 +252,9 @@ section#carrito.remove{
 
 
 @media only screen and (min-width: 768px){
+    div#cuerpo1{
+        grid-template-columns: repeat(3, 180px);
+    }
     section#carrito.visible{
         width: 512px;
     }
@@ -215,6 +281,9 @@ section#carrito.remove{
 }
 
 @media only screen and (min-width: 1366px){
+    div#cuerpo1{
+        grid-template-columns: repeat(4, 180px);
+    }
     #cont_carrito p{
         display: flex;
         font-size: 1.5em;
