@@ -20,19 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(productos.length <= nver){
         for (let i = 0; i < productos.length; i++) {
-            document.getElementById(productos[i].id).style.display='block';
+            document.getElementById(productos[i].id).style.display='flex';
         };
 
         btnVermas.style.display = 'none';
     }else{
         for (let i = 0; i < nver; i++) {
-            document.getElementById(productos[i].id).style.display='block';
+            document.getElementById(productos[i].id).style.display='flex';
         };
     }
 
     btnVermas.addEventListener('click', ()=>{
         for (let i = nver; i < productos.length; i++) {
-            document.getElementById(productos[i].id).style.display='block';
+            document.getElementById(productos[i].id).style.display='flex';
         }; 
 
         btnVermas.style.display = 'none';
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         btnVermenos.style.display = 'none';
-        btnVermas.style.display = 'block';
+        btnVermas.style.display = 'flex';
     });
 
 });

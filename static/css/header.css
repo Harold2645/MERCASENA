@@ -100,12 +100,37 @@ figure#header_logo{
     display: none;
 }
 
+#cont_input{
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    width: clamp(100px, 200%, 300px);
+}
+    #cont_input input{
+        background-color: rgb(240, 240, 240);
+        padding: 15px;
+        max-width: 100%;
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+        border: 1px 1px 1px 0px solid;
+    }
+    #cont_input i{
+        font-size: 15px;
+        padding: 10px;
+        border: none;
+    }
+
+
+
 div#cuerpo1{
     padding: 15px;
     display: grid;
     grid-template-columns: repeat(2, 150px);
     gap: 5px;
-    font-size: 9px;
+    font-size: clamp(8px, 100%, 18px);
 }
 
 #cont_img{
@@ -139,6 +164,7 @@ div#cuerpo1{
     height: 70px;
     width: 100%;
     text-align: center;
+    margin: 15px;
 }
 
     .cantidad{
@@ -149,6 +175,18 @@ div#cuerpo1{
         border-radius: 2px;
         margin-right: 3px;
     }
+    .cantidad .menos{
+        border: 1px solid #00324D;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+    .cantidad .mas{
+        background-color: #00324D;
+        color: white;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+    }
         .cantidad button{
             display: flex;
             align-items: center;
@@ -156,7 +194,7 @@ div#cuerpo1{
             height: 70%;
         }
             .cantidad button i{
-                font-size: 5px;      
+                font-size: clamp(9px, 60%, 17px);     
             }
     #cont_subtotal{
         display: flex;
@@ -165,11 +203,13 @@ div#cuerpo1{
         border: 1px solid black;
         padding: 1px;
         border-radius: 2px;
+        color: grey;
     }    
     .inputs_numeros{
         border: none;
         background: none;
         width: 100%;
+        color: grey;
     }
     .inputs{
         width: 20px;
@@ -179,13 +219,14 @@ div#cuerpo1{
     }
 
 .btn_carrito{
-    margin-top: 10px;
+    margin-top: 20px;
     color: white;
     background-color: #00324D;
     border: none;
     padding: 8px;
     font-size: 12px;
     border-radius: 5px;
+    cursor: pointer;
 }
 #forma_registro{
     display: none;
@@ -250,10 +291,32 @@ section#carrito.remove{
         font-size: 35px;
     }
 
+#ver_mas, #ver_menos{
+    background-color: #00324D;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+}
+
 
 @media only screen and (min-width: 768px){
     div#cuerpo1{
         grid-template-columns: repeat(3, 180px);
+        gap: 15px;
+    }
+    .cantidad{
+        padding: 0 4px;
+    }
+    .cantidad button{
+        padding: 6px;
     }
     section#carrito.visible{
         width: 512px;
@@ -282,7 +345,17 @@ section#carrito.remove{
 
 @media only screen and (min-width: 1366px){
     div#cuerpo1{
-        grid-template-columns: repeat(4, 180px);
+        grid-template-columns: repeat(4, 250px);
+        gap: 25px;
+    }
+    .cantidad{
+        padding: 0 6px;
+    }
+    .cantidad button{
+        padding: 9px;
+    }
+    .inputs{
+        width: 40px;
     }
     #cont_carrito p{
         display: flex;
