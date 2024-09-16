@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <script src="../static/js/vistaProductos.js"></script>
     <script src="../static/js/cantidad.js"></script>
@@ -87,7 +88,7 @@
                         </figure>
                         <div id="cont_info">
                             <p id="emprendedor_{{producto.codigo_unidad}}">Emprendedor: {{producto.emprendedor_unidad}}</p>
-                            <p id="unidad_{{producto.codigo_unidad}}">{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
+                            <p id="unidad_{{producto.codigo_unidad}}">{{producto.presentacion_producto}} x <span>{{producto.precio_producto}}</span></p>
                         </div>
                         <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
                         <input type="hidden" id="stock_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">

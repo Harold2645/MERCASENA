@@ -94,14 +94,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 carritoContenido.innerHTML += `
                     <div class="item">
                         <figure>
-                            <img  width="100" src="uploads/${producto.img}" alt="${producto.nombre}" >
+                            <img  width="100" height="100" src="uploads/${producto.img}" alt="${producto.nombre}" >
                         </figure>
-                        <h3>${producto.nombre}</h3>
-                        <p>${producto.precioUnidad}</p>
-                        <p>${producto.emprendedor}</p>
-                        <p>Cantidad: ${producto.cantidad}</p>
-                        <p>Subtotal: $${producto.subtotal}</p>
-                        <button class="eliminar" id="${producto.codigo}">Eliminar</button>
+                        <div class="item_cont">
+                            <h3>${producto.nombre}</h3>
+                            <p>${producto.precioUnidad}</p>
+                            <p>${producto.emprendedor}</p>
+                            <div class="item_cont_direccion">
+                                <p>Cantidad: ${producto.cantidad}</p>
+                                <p>Subtotal: $${producto.subtotal}</p>
+                            </div>
+                            <a href="#" class="eliminar" id="${producto.codigo}">
+                                <i class="fi fi-rs-trash"></i>
+                            </a>
+                        </div>
                     </div>
                     `;
             });
@@ -218,5 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
     abrirCarrito.addEventListener('click', ()=>{
         verCarrito();
     });
+ 
 
 });
