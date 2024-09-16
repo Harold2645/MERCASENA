@@ -21,12 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btns_carrito.forEach(btn=> {
         const codigoUnidad = btn.id.split('_')[1];
+        const nombre = document.getElementById(`nombre_${codigoUnidad}`).textContent;
+        const imgProducto = document.getElementById(`img_${codigoUnidad}`).dataset.nombre;
+        const emprendedor = document.getElementById(`emprendedor_${codigoUnidad}`).textContent
+        const precioUnidad = document.getElementById(`unidad_${codigoUnidad}`).textContent;
         const cantidadProducto = document.getElementById(`cantidad_${codigoUnidad}`);
         const subtotalProducto = document.getElementById(`subtotal_${codigoUnidad}`);
         const precioProducto = parseFloat(document.getElementById(`precio_${codigoUnidad}`).value);
         const stockProducto = parseInt(document.getElementById(`stock_${codigoUnidad}`).value);
         btn.addEventListener('click', () => {
-            let nombre = document.getElementById(`nombre_${codigoUnidad}`).innerText;
             let cantidad = parseInt(cantidadProducto.value);
             let subtotal = (cantidad * precioProducto);
             if (cantidad > 0) {
@@ -54,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         carrito.productos.push({
                             codigo: codigoUnidad,
                             nombre: nombre,
+                            img: imgProducto,
+                            emprendedor: emprendedor,
+                            precioUnidad: precioUnidad,
                             precio: precioProducto,
                             cantidad: cantidad,
                             subtotal: subtotal
@@ -87,7 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
             carrito.productos.forEach(producto => {
                 carritoContenido.innerHTML += `
                     <div class="item">
-                        <p>${producto.nombre}</p>
+                        <figure>
+                            <img  width="100" src="uploads/${producto.img}" alt="${producto.nombre}" >
+                        </figure>
+                        <h3>${producto.nombre}</h3>
+                        <p>${producto.precioUnidad}</p>
+                        <p>${producto.emprendedor}</p>
                         <p>Cantidad: ${producto.cantidad}</p>
                         <p>Subtotal: $${producto.subtotal}</p>
                         <button class="eliminar" id="${producto.codigo}">Eliminar</button>
@@ -177,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     async function enviarCarrito(){
-        const respuesta = await  fetch('http://192.168.0.8:5080/registrarCompra', {
+        const respuesta = await  fetch('http://192.168.1.110:5080/registrarCompra', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
