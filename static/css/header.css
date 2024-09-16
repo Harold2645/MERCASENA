@@ -341,6 +341,23 @@ section#carrito.remove{
         left: 93%;
         bottom: 5%;
     }
+
+ .mi-boton-confirmar {
+    background-color: #00324D; 
+    color: #fff; 
+    border: 1px solid #00324D; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+}
+    
+    .mi-boton-confirmar:hover {
+        background: none;
+        border: 1px solid #39A900;
+        color: #39A900;/* Verde oscuro al pasar el ratón */
+        transition: 0.3s;
+    }
  
 
 
