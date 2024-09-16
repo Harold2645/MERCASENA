@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
                 customClass: {
-                    confirmButton: 'mi-boton-confirmar' // Clase personalizada para el botón de confirmación
+                    confirmButton: 'mi-boton-confirmar' 
                 },
-                buttonsStyling: false // Deshabilita los estilos predeterminados de SweetAlert2
+                buttonsStyling: false 
             });
       
         });
