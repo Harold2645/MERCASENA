@@ -69,7 +69,10 @@
 
     <main id="cuerpo">
 
-        <input type="text" name="buscar" id="buscar">
+        <div id="cont_input">
+            <i class="lni lni-search"></i>
+            <input type="text" name="buscar" id="buscar" placeholder="Buscar Producto...">
+        </div>
 
 
         <div id="cuerpo1">
@@ -90,9 +93,9 @@
                         <input type="hidden" id="stock_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">
                         <div class="contenedor_cantidad">
                             <div class="cantidad">
-                                <button id="resta_{{producto.codigo_unidad}}"><i class="lni lni-minus"></i></button>
+                                <button id="resta_{{producto.codigo_unidad}}" class="menos"><i class="lni lni-minus"></i></button>
                                 <input type="text" class="inputs" id="cantidad_{{producto.codigo_unidad}}" readonly value="1">
-                                <button id="suma_{{producto.codigo_unidad}}"><i class="lni lni-plus"></i></button>
+                                <button id="suma_{{producto.codigo_unidad}}" class="mas"><i class="lni lni-plus"></i></button>
                             </div>
                             <div id="cont_subtotal">
                                 <i class="lni lni-dollar"></i>
