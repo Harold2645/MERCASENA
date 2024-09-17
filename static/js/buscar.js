@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div id="carta_${producto.codigo_unidad}" class="cartas2">
                             <h2 id="nombre_${producto.codigo_unidad}">${producto.nombre_producto}</h2>
                             <figure id="cont_img">
-                                <img src="uploads/${producto.imagen_producto}" alt="${producto.nombre_producto}"  class="img_bd" id="img_${producto.codigo_unidad}>
+                                <img src="uploads/${producto.imagen_producto}" alt="${producto.nombre_producto}"  class="img_bd" id="img_${producto.codigo_unidad}">
                             </figure>
 
                             <div id="cont_info">
