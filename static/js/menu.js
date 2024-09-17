@@ -20,6 +20,15 @@ cerrar.addEventListener("click", () => {
         notscroll.style.overflow = "visible"
     }
 })
+document.addEventListener("click", (event) => {
+    if (!nav.contains(event.target) && event.target !== abrir) {
+        if (nav.classList.contains("visible")) {
+            nav.classList.remove("visible");
+            nav.classList.add("remove");
+            notscroll.style.overflow = "visible";
+        }
+    }
+});
 
 function ventana (){
     let ventana_ancho = window.innerWidth;
@@ -32,5 +41,6 @@ function ventana (){
     }
 
 }
+
 
 })

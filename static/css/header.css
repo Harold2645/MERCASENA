@@ -166,6 +166,9 @@ div#cuerpo1{
     text-align: center;
     margin: 15px;
 }
+    #cont_info p span{
+        color: #00324D;
+    }
 
     .cantidad{
         display: flex;
@@ -230,7 +233,16 @@ div#cuerpo1{
 }
 #forma_registro{
     display: none;
+    margin: 15px;
+    
 }
+    #forma_registro h2{
+        margin: 0;
+    }
+    .inp_registro{
+        padding-top: 5px;
+    }
+   
 
 section#carrito{
     position: absolute;
@@ -277,8 +289,10 @@ section#carrito.remove{
         display: flex;   
         align-items: center;
         gap: 10px;
+        padding-right: 5px;
     }
     #cont_miniheader{
+        height: 100px;
         padding: 10px;
         display: flex;
         justify-content: space-between;
@@ -286,6 +300,8 @@ section#carrito.remove{
     }
     #cont_miniheader i#cerrar{
         font-size: 20px;
+        cursor: pointer;
+        margin-left: 5px;
     }
     #cont_miniheader #carrito_miniheader{
         font-size: 35px;
@@ -300,10 +316,83 @@ section#carrito.remove{
     margin: 10px;
 }
 
+#carritoContenido{
+    max-height: 350px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    padding: 10px; 
+}
+.item{
+    display: flex;
+    height: 120px;
+    background-color: white;
+    color: black;
+    margin-bottom: 15px;
+    margin: 5px;
+    padding: 10px;
+    position: relative;
+    border-radius: 8px;
+}
+    #totalCarrito{
+        text-align: center;
+    }
+    .item_cont h3,p {
+        margin: 0;
+        padding-left: 15px;
+    }
+    .item_cont_direccion{
+        display: flex;
+        margin-top: 10px;
+        
+    }
+    .eliminar{
+        position: absolute;
+        color: gray;
+        font-size: 20px;
+        left: 93%;
+        bottom: 5%;
+    }
+
+ .mi-boton-confirmar {
+    background-color: #00324D; 
+    color: #fff; 
+    border: 1px solid #00324D; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+}
+    
+    .mi-boton-confirmar:hover {
+        background: none;
+        border: 1px solid #39A900;
+        color: #39A900;/* Verde oscuro al pasar el ratón */
+        transition: 0.3s;
+    }
+ 
+
+
+#boton{
+    display: flex;
+    justify-content: center;
+}
+
+    #confirmar_carrito{
+        margin-top: 20px;
+        color: white;
+        background-color: #00324D;
+        border: none;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
 footer{
     position: fixed;
     bottom: 0;
     padding: 10px;
+    color: gray;
 }
 
 

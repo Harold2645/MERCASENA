@@ -7,11 +7,14 @@
     <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <script src="../static/js/vistaProductos.js"></script>
     <script src="../static/js/cantidad.js"></script>
     <script src="../static/js/buscar.js"></script>
     <script src="../static/js/carrito.js"></script>
+    <script src="../static/js/alertas_validacion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/static/js/menu.js"></script>
     <title>MERCASENA</title>
 </head>
@@ -50,17 +53,21 @@
                 
                 <h2>Datos de Cliente</h2>
                 
-                <input type="email" name="correo_cliente" id="correo_cliente" inputmode="email"  placeholder="Correo Electronico" required tabindex="1" maxlength="64" minlength="8">
-                <div id="error_correo"></div>
-    
-                <input type="text" name="nombre_cliente" id="nombre_cliente" maxlength="100" minlength="2" required tabindex="2" placeholder="Nombre(s) y Apellido(s)">
-                <div id="error_nombre"></div>
-    
-                <input type="text" name="movil_cliente" id="movil_cliente" maxlength="10" minlength="10" required tabindex="3" placeholder="Número de Celular">
-                <div id="error_movil"></div>
+                <div class="inp_registro">
+                    <input type="email" name="correo_cliente" id="correo_cliente" inputmode="email"  placeholder="Correo Electronico" required tabindex="1" maxlength="64" minlength="8">
+                    <div id="error_correo"></div>
+                </div>
+                <div class="inp_registro">
+                    <input type="text" name="nombre_cliente" id="nombre_cliente" maxlength="100" minlength="2" required tabindex="2" placeholder="Nombre(s) y Apellido(s)">
+                    <div id="error_nombre"></div>
+                </div>
+                <div class="inp_registro">
+                    <input type="text" name="movil_cliente" id="movil_cliente" maxlength="10" minlength="10" required tabindex="3" placeholder="Número de Celular">
+                    <div id="error_movil"></div>
+                </div>
     
                 <button type="submit">Confirmar</button>
-          
+                
             </form>
         </section>
 
@@ -87,7 +94,7 @@
                         </figure>
                         <div id="cont_info">
                             <p id="emprendedor_{{producto.codigo_unidad}}">Emprendedor: {{producto.emprendedor_unidad}}</p>
-                            <p id="unidad_{{producto.codigo_unidad}}">{{producto.presentacion_producto}} x {{producto.precio_producto}}</p>
+                            <p id="unidad_{{producto.codigo_unidad}}">{{producto.presentacion_producto}} x <span>{{producto.precio_producto}}</span></p>
                         </div>
                         <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
                         <input type="hidden" id="stock_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">
