@@ -87,6 +87,7 @@
                 <h1>{{mensaje}}</h1>
             {% else %}
                 {% for producto in productos %}
+                <h2 id="error_producto">No hay ese producto.</h2>
                     <div class="cartas" id="carta_{{producto.codigo_unidad}}">
                         <h2 id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</h2>
                         <figure id="cont_img">

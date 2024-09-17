@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnConfirmar = document.querySelector('#confirmar_carrito');
             btnConfirmar.addEventListener('click', ()=>{
                 formulario.style.display = 'block';
+                btnConfirmar.style.display = 'none';
             });
         }; 
         totalCarrito.textContent = `Total: $${carrito.total}`;
@@ -193,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     async function enviarCarrito(){
-        const respuesta = await  fetch('http://192.168.1.110:5080/registrarCompra', {
+        const respuesta = await  fetch('http://10.206.80.26:5080/registrarCompra', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

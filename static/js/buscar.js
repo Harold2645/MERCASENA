@@ -1,103 +1,114 @@
-document.addEventListener('DOMContentLoaded', () => { 
-    
-    const cuerpo1 = document.getElementById('cuerpo1');
-    const cuerpo2 = document.getElementById('cuerpo2');
-    const btn_vermas = document.getElementById('ver_mas');
+document.addEventListener('DOMContentLoaded', ()=>{
+    const cartaProductos = document.querySelectorAll('.cartas');
     const buscar = document.getElementById('buscar');
+    const btnVermas = document.getElementById('ver_mas');
+    const btnVermenos = document.getElementById('ver_menos');
+    const errorProucto = document.getElementById('error_producto');
+    let productos = [];
+    let nver = 0;
 
-
-    buscar.addEventListener('keyup', async (etiqueta)=>{
-
-        nombre = etiqueta.target.value || '';
-
-        if(nombre.length > 0){
-            
-            const respuesta = await fetch('http://192.168.0.8:5080/buscarproducto', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(nombre),
-                
-            });
-            const result = await respuesta.json();
-
-            if(result !=  'No existe'){
-
-                cuerpo2.innerHTML = '';
-
-                if(cuerpo1.classList.contains('visible')){
-                    cuerpo1.style.display = "none"
-                    btn_vermas.style.display = "none"
-                    
-                    cuerpo2.style.display = "grid"
-                }else{
-                    cuerpo1.style.display = "grid"
-                }
-
-                
-                result.forEach(producto => {
-                    
-                    cuerpo2.innerHTML += `
-                    <div id="carta_${producto.codigo_unidad}" class="cartas2">
-                            <h2 id="nombre_${producto.codigo_unidad}">${producto.nombre_producto}</h2>
-                            <figure id="cont_img">
-                                <img src="uploads/${producto.imagen_producto}" alt="${producto.nombre_producto}"  class="img_bd" id="img_${producto.codigo_unidad}">
-                            </figure>
-
-                            <div id="cont_info">
-                                <p>Emprendedor: ${producto.emprendedor_unidad}</p>
-                                <p>${producto.presentacion_producto} x <span>${producto.precio_producto}</span></p>
-                            </div>
-
-                            <input type="hidden" id="precio_${producto.codigo_unidad}" value="${producto.precio_producto}">
-                            <input type="hidden" id="stock_${producto.codigo_unidad}" value="${producto.cantidad_disponible}">  
-
-                            <div class="contenedor_cantidad">
-                                <div class="cantidad">
-                                    <button id="resta_${producto.codigo_unidad}" class="menos"><i class="lni lni-minus"></i></button>
-                                    
-                                    <input type="text" class="inputs" id="cantidad_${producto.codigo_unidad}" readonly value="1">
-                                    <button id="suma_${producto.codigo_unidad}" class="mas"><i class="lni lni-plus"></i></button>
-                                </div>
-
-                                <div id="cont_subtotal">
-                                    <i class="lni lni-dollar"></i>
-                                    <input type="text" class="inputs_numeros" id="subtotal_${producto.codigo_unidad}"  readonly value="${producto.precio_producto}">
-                                </div>
-
-                            </div>
-                            <button id="carrito_${producto.codigo_unidad}" class="btn_carrito">Agregar al Carrito</button>
-                            
-                    </div>
-                        `;
-                        
-                });
-
-            }else{
-                cuerpo1.innerHTML = '<p>No hay producto disponible</p>';
-                if(cuerpo1.classList.contains('visible')){
-                    cuerpo2.style.display = "none"
-                    btn_vermas.style.display = "none"
-                    
-                    cuerpo1.style.display = "grid"
-                }else{
-                    btn_vermas.style.display = "none"
-                    
-                    cuerpo1.style.display = "grid"
-                }
-            }
+    function resolucion(){
+        let ventana_ancho = window.innerWidth;
+        let ventana_alto = window.innerHeight;
+        
+        if (ventana_ancho <= 393 && ventana_alto <=873){
+            nver = 4;
+        }else if (ventana_ancho <= 1024 && ventana_alto <= 768 && ventana_ancho >= 873 && ventana_alto >=393){
+            nver = 6;
         }else{
-            cuerpo2.innerHTML = '';
+            nver = 8;
+        };
+    };
 
-            if(cuerpo1.style.display = "none"){
-                cuerpo1.style.display = "grid"
-                btn_vermas.style.display = "block"
+    function mostrarProductos(){
+        if(cartaProductos.length <= nver){
+            for (let i = 0; i < cartaProductos.length; i++) {
+                document.getElementById(cartaProductos[i].id).style.display='flex';
+            };
+            btnVermas.style.display = 'none';
+        }else{
+            btnVermas.style.display = 'block';
+            for (let i = 0; i < nver; i++) {
+                document.getElementById(cartaProductos[i].id).style.display='flex';
+            };
+        };
+    
+    };
 
-                cuerpo2.style.display = "none"
-            }
-        }
+    resolucion();
+    mostrarProductos();
 
+
+    btnVermas.addEventListener('click', ()=>{
+        for (let i = nver; i < cartaProductos.length; i++) {
+            document.getElementById(cartaProductos[i].id).style.display='flex';
+        }; 
+
+        btnVermas.style.display = 'none';
+        btnVermenos.style.display = 'flex';
     });
 
+    btnVermenos.addEventListener('click', ()=>{
+        for (let i = nver; i < cartaProductos.length ; i++) {
+            document.getElementById(cartaProductos[i].id).style.display='none';
+        };
+
+        btnVermenos.style.display = 'none';
+        btnVermas.style.display = 'flex';
+    });
+
+    cartaProductos.forEach(carta => {
+        let codigoUnidad = carta.id.split('_')[1]
+        let nombreProducto = document.getElementById(`nombre_${codigoUnidad}`).textContent.toLocaleLowerCase();
+        productos.push({
+            codigo: codigoUnidad,
+            nombre: nombreProducto
+        });
+    });
+
+
+    function buscarProducto(palabra){
+        if(palabra != ''){
+
+            let productoExiste = false;
+
+            btnVermas.style.display='none';
+            btnVermenos.style.display='none';
+            errorProucto.style.display='none';
+
+            cartaProductos.forEach(carta => {
+                document.getElementById(carta.id).style.display='none';
+            });
+
+            productos.forEach(producto => {
+                let nombreRecortado = producto.nombre.slice(0, palabra.length);
+                if (nombreRecortado == palabra){
+                    document.getElementById(`carta_${producto.codigo}`).style.display='flex';
+                    productoExiste = true;
+                }
+            });
+
+            if(!productoExiste){
+                errorProucto.style.display='block';
+            }
+
+            
+        }else{
+            errorProucto.style.display='none';
+
+            cartaProductos.forEach(carta => {
+                document.getElementById(carta.id).style.display='none';
+            });
+
+            mostrarProductos();
+        };
+    };
+    
+
+    buscar.addEventListener('keyup', ()=>{
+        let producto = buscar.value.toLocaleLowerCase().trim();
+        buscarProducto(producto);
+    });
 });
+
+/* <h2 id="error_producto" style="display: none;">No se ha encontrado el producto especificado</h2> */

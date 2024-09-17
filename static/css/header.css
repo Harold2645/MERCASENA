@@ -84,7 +84,9 @@ figure#header_logo{
     align-items: center;
     justify-content: center;
 }
-
+#error_producto{
+    display: none;
+}
 .oculto {
     display: none;
 }
