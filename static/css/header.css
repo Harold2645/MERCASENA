@@ -132,6 +132,13 @@ div#cuerpo1{
     gap: 5px;
     font-size: clamp(8px, 100%, 18px);
 }
+div#cuerpo2{
+    padding: 15px;
+    display: none;
+    grid-template-columns: repeat(2, 150px);
+    gap: 5px;
+    font-size: clamp(8px, 100%, 18px);
+}
 
 #cont_img{
     background-color: blue;
@@ -151,6 +158,16 @@ div#cuerpo1{
     display: none;
 }
     .cartas h2{
+        margin: 0;
+        padding-bottom: 10px;
+    }
+.cartas2{
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+    .cartas2 h2{
         margin: 0;
         padding-bottom: 10px;
     }
@@ -401,6 +418,10 @@ footer{
         grid-template-columns: repeat(3, 180px);
         gap: 15px;
     }
+    div#cuerpo2{
+        grid-template-columns: repeat(3, 180px);
+        gap: 15px;
+    }
     .cantidad{
         padding: 0 4px;
     }
@@ -434,6 +455,10 @@ footer{
 
 @media only screen and (min-width: 1366px){
     div#cuerpo1{
+        grid-template-columns: repeat(4, 250px);
+        gap: 25px;
+    }
+    div#cuerpo2{
         grid-template-columns: repeat(4, 250px);
         gap: 25px;
     }

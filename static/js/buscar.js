@@ -1,164 +1,103 @@
-// document.addEventListener('DOMContentLoaded', () => { 
+document.addEventListener('DOMContentLoaded', () => { 
     
-//     const cuerpo1 = document.getElementById('cuerpo1');
-//     const cuerpo2 = document.getElementById('cuerpo2');
-//     const cuerpo3 = document.getElementById('cuerpo3');
-//     const btn_vermas = document.getElementById('vermas');
-//     const btn_vermenos = document.getElementById('vermenos');
-//     const buscar = document.getElementById('buscar');
+    const cuerpo1 = document.getElementById('cuerpo1');
+    const cuerpo2 = document.getElementById('cuerpo2');
+    const btn_vermas = document.getElementById('ver_mas');
+    const buscar = document.getElementById('buscar');
 
 
-//     buscar.addEventListener('keyup', async (etiqueta)=>{
+    buscar.addEventListener('keyup', async (etiqueta)=>{
 
-//         nombre = etiqueta.target.value || '';
+        nombre = etiqueta.target.value || '';
 
-//         if(nombre.length > 0){
+        if(nombre.length > 0){
             
-//             const respuesta = await fetch('http://192.168.1.110:5080/buscarproducto', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: JSON.stringify(nombre),
+            const respuesta = await fetch('http://192.168.0.8:5080/buscarproducto', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nombre),
                 
-//             });
-//             const result = await respuesta.json();
+            });
+            const result = await respuesta.json();
 
-//             if(result !=  'No existe'){
+            if(result !=  'No existe'){
 
-//                 cuerpo1.innerHTML = '';
+                cuerpo2.innerHTML = '';
 
-//                 if(cuerpo2.classList.contains('visible')){
-//                     cuerpo2.classList.remove('visible');
-//                     cuerpo2.classList.add('oculto');
-//                     btn_vermas.style.display = "none"
-
-//                     if(cuerpo3.classList.contains('visible')){
-//                         cuerpo3.classList.remove('visible');
-//                         cuerpo3.classList.add('oculto');
-//                         btn_vermenos.style.display = "none"
-//                     }else{
-//                         btn_vermenos.style.display = "none"
-//                     }
+                if(cuerpo1.classList.contains('visible')){
+                    cuerpo1.style.display = "none"
+                    btn_vermas.style.display = "none"
                     
-//                     cuerpo1.classList.remove('oculto');
-//                     cuerpo1.classList.add('visible');
-//                 }else{
-//                     btn_vermas.style.display = "none"
-
-//                     if(cuerpo3.classList.contains('visible')){
-//                         cuerpo3.classList.remove('visible');
-//                         cuerpo3.classList.add('oculto');
-//                         btn_vermenos.style.display = "none"
-//                     }else{
-//                         btn_vermenos.style.display = "none"
-//                     }
-                    
-//                     cuerpo1.classList.remove('oculto');
-//                     cuerpo1.classList.add('visible');
-//                 }
+                    cuerpo2.style.display = "grid"
+                }else{
+                    cuerpo1.style.display = "grid"
+                }
 
                 
-//                 result.forEach(producto => {
+                result.forEach(producto => {
                     
-//                     cuerpo1.innerHTML += `
-//                         <div class="item">
-//                             <p>${producto.nombre_producto}</p>
-//                             <p>Emprendedor: ${producto.emprendedor_unidad}</p>
-//                             <img width="200" src="uploads/${producto.imagen_producto}" alt="${producto.nombre_producto}">
-//                             <p>${producto.presentacion_producto} x ${producto.precio_producto}</p>
-//                             <input type="hidden" id="precio_${producto.codigo_unidad}" value="${producto.precio_producto}">
-//                             <input type="hidden" id="stock_${producto.codigo_unidad}" value="${producto.cantidad_disponible}">  
+                    cuerpo2.innerHTML += `
+                    <div id="carta_${producto.codigo_unidad}" class="cartas2">
+                            <h2 id="nombre_${producto.codigo_unidad}">${producto.nombre_producto}</h2>
+                            <figure id="cont_img">
+                                <img src="uploads/${producto.imagen_producto}" alt="${producto.nombre_producto}"  class="img_bd" id="img_${producto.codigo_unidad}>
+                            </figure>
 
-//                             <div class="contenedor_cantidad">
-//                                 <div class="cantidad">
-//                                     <button id="resta_${producto.codigo_unidad}">-</button>
-//                                     <input type="text" class="inputs_numeros" id="cantidad_${producto.codigo_unidad}" readonly value="0">
-//                                     <button id="suma_${producto.codigo_unidad}">+</button>
-//                                 </div>
-//                                 $
-//                                 <input type="text" class="inputs_numeros" id="subtotal_${producto.codigo_unidad}"  readonly value="0" >
-//                             </div>
-//                             <button id="carrito_${producto.codigo_unidad}" class="btn_carrito">Agregar al Carrito</button>
+                            <div id="cont_info">
+                                <p>Emprendedor: ${producto.emprendedor_unidad}</p>
+                                <p>${producto.presentacion_producto} x <span>${producto.precio_producto}</span></p>
+                            </div>
+
+                            <input type="hidden" id="precio_${producto.codigo_unidad}" value="${producto.precio_producto}">
+                            <input type="hidden" id="stock_${producto.codigo_unidad}" value="${producto.cantidad_disponible}">  
+
+                            <div class="contenedor_cantidad">
+                                <div class="cantidad">
+                                    <button id="resta_${producto.codigo_unidad}" class="menos"><i class="lni lni-minus"></i></button>
+                                    
+                                    <input type="text" class="inputs" id="cantidad_${producto.codigo_unidad}" readonly value="1">
+                                    <button id="suma_${producto.codigo_unidad}" class="mas"><i class="lni lni-plus"></i></button>
+                                </div>
+
+                                <div id="cont_subtotal">
+                                    <i class="lni lni-dollar"></i>
+                                    <input type="text" class="inputs_numeros" id="subtotal_${producto.codigo_unidad}"  readonly value="${producto.precio_producto}">
+                                </div>
+
+                            </div>
+                            <button id="carrito_${producto.codigo_unidad}" class="btn_carrito">Agregar al Carrito</button>
                             
-//                         </div>
-//                         `;
-//                 });
+                    </div>
+                        `;
+                        
+                });
 
-//             }else{
-//                 cuerpo1.innerHTML = '<p>No hay producto disponible</p>';
-//                 if(cuerpo2.classList.contains('visible')){
-//                     cuerpo2.classList.remove('visible');
-//                     cuerpo2.classList.add('oculto');
-//                     btn_vermas.style.display = "none"
-    
-//                     if(cuerpo3.classList.contains('visible')){
-//                         cuerpo3.classList.remove('visible');
-//                         cuerpo3.classList.add('oculto');
-//                         btn_vermenos.style.display = "none"
-
-//                     }else{
-//                         btn_vermenos.style.display = "none"
-//                     }
+            }else{
+                cuerpo1.innerHTML = '<p>No hay producto disponible</p>';
+                if(cuerpo1.classList.contains('visible')){
+                    cuerpo2.style.display = "none"
+                    btn_vermas.style.display = "none"
                     
-//                     cuerpo1.classList.remove('oculto');
-//                     cuerpo1.classList.add('visible');
-//                 }else{
-//                     btn_vermas.style.display = "none"
-    
-//                     if(cuerpo3.classList.contains('visible')){
-//                         cuerpo3.classList.remove('visible');
-//                         cuerpo3.classList.add('oculto');
-//                         btn_vermenos.style.display = "none"
-
-//                     }else{
-//                         btn_vermenos.style.display = "none"
-//                     }
+                    cuerpo1.style.display = "grid"
+                }else{
+                    btn_vermas.style.display = "none"
                     
-//                     cuerpo1.classList.remove('oculto');
-//                     cuerpo1.classList.add('visible');
-//                 }
-//             }
-//         }else{
-//             cuerpo1.innerHTML = '';
+                    cuerpo1.style.display = "grid"
+                }
+            }
+        }else{
+            cuerpo2.innerHTML = '';
 
-//             if(cuerpo2.classList.contains('oculto')){
-//                 cuerpo2.classList.remove('oculto');
-//                 cuerpo2.classList.add('visible');
-//                 btn_vermas.style.display = "block"
+            if(cuerpo1.style.display = "none"){
+                cuerpo1.style.display = "grid"
+                btn_vermas.style.display = "block"
 
-                
-//                 cuerpo1.classList.remove('visible');
-//                 cuerpo1.classList.add('oculto');
-//             }
-//         }
+                cuerpo2.style.display = "none"
+            }
+        }
 
-//     });
+    });
 
-//     document.getElementById('vermas').addEventListener('click', ()=>{
-
-//         if(cuerpo2.classList.contains('visible')){
-//             cuerpo2.classList.remove('visible');
-//             cuerpo2.classList.add('oculto');
-//             btn_vermas.style.display = "none"
-            
-//             cuerpo3.classList.remove('oculto');
-//             cuerpo3.classList.add('visible');
-//             btn_vermenos.style.display = "block"
-//         }
-//     });
-//     document.getElementById('vermenos').addEventListener('click', ()=>{
-
-//         if(cuerpo3.classList.contains('visible')){
-//             cuerpo3.classList.remove('visible');
-//             cuerpo3.classList.add('oculto');
-//             btn_vermenos.style.display = "none"
-            
-//             cuerpo2.classList.remove('oculto');
-//             cuerpo2.classList.add('visible');
-//             btn_vermas.style.display = "block"
-//         }
-//     })
-
-
-// });
+});
