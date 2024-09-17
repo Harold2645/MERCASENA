@@ -377,6 +377,9 @@ section#carrito.remove{
         left: 93%;
         bottom: 5%;
     }
+    .eliminar:hover{
+        color: red;
+    }
 
  .mi-boton-confirmar {
     background-color: #00324D; 
