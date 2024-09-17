@@ -134,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnConfirmar = document.querySelector('#confirmar_carrito');
             btnConfirmar.addEventListener('click', ()=>{
                 formulario.style.display = 'block';
-
             });
         }; 
         totalCarrito.textContent = `Total: $${carrito.total}`;
@@ -224,6 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
     abrirCarrito.addEventListener('click', ()=>{
         verCarrito();
     });
- 
+    
 
 });

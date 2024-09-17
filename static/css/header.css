@@ -233,7 +233,16 @@ div#cuerpo1{
 }
 #forma_registro{
     display: none;
+    margin: 15px;
+    
 }
+    #forma_registro h2{
+        margin: 0;
+    }
+    .inp_registro{
+        padding-top: 5px;
+    }
+   
 
 section#carrito{
     position: absolute;
@@ -280,6 +289,7 @@ section#carrito.remove{
         display: flex;   
         align-items: center;
         gap: 10px;
+        padding-right: 5px;
     }
     #cont_miniheader{
         height: 100px;
@@ -291,6 +301,7 @@ section#carrito.remove{
     #cont_miniheader i#cerrar{
         font-size: 20px;
         cursor: pointer;
+        margin-left: 5px;
     }
     #cont_miniheader #carrito_miniheader{
         font-size: 35px;
