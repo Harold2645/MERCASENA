@@ -43,6 +43,8 @@ header#header{
     align-items: center;
     justify-content: space-between;
     background-color: #39A900;
+    position: fixed;
+    width: 100%;
 }
 #rayita{
     height: 55px;
@@ -83,6 +85,7 @@ figure#header_logo{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 115px;
 }
 #error_producto{
     display: none;
