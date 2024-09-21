@@ -15,7 +15,6 @@ def registrar_compra():
         cliente.agregar_cliente(carrito['cliente'])
     for produc in carrito['productos']:
         cantidad = producto.consulta_cantidad(produc['codigo'])
-        print(cantidad)
         if cantidad[2] >= produc['cantidad']:
             resta = cantidad[2] - produc['cantidad']
             codigo = produc['codigo']

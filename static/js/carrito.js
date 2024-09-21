@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     async function enviarCarrito(){
-        const respuesta = await  fetch('http://10.206.80.26:5080/registrarCompra', {
+        const respuesta = await  fetch('http://192.168.0.8:5080/registrarCompra', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 mensaje += "Te llegara un correo";
             }
-            alert(mensaje);
+            alert("No hay estos productos: "/n,mensaje);
 
     };
 

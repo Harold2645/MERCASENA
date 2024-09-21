@@ -88,29 +88,29 @@
             {% else %}
                 {% for producto in productos %}
                 <h2 id="error_producto">No hay ese producto.</h2>
-                    <div class="cartas" id="carta_{{producto.codigo_unidad}}">
-                        <h2 id="nombre_{{producto.codigo_unidad}}">{{producto.nombre_producto}}</h2>
+                    <div class="cartas" id="carta_{{producto.contador}}">
+                        <h2 id="nombre_{{producto.contador}}">{{producto.nombre_producto}}</h2>
                         <figure id="cont_img">
-                            <img src="uploads/{{producto.imagen_producto}}" alt="{{producto.nombre_producto}}" class="img_bd" id="img_{{producto.codigo_unidad}}" data-nombre="{{producto.imagen_producto}}">
+                            <img src="uploads/{{producto.imagen}}" alt="{{producto.nombre_producto}}" class="img_bd" id="img_{{producto.contador}}" data-nombre="{{producto.imagen}}">
                         </figure>
                         <div id="cont_info">
-                            <p id="emprendedor_{{producto.codigo_unidad}}">Emprendedor: {{producto.emprendedor_unidad}}</p>
-                            <p id="unidad_{{producto.codigo_unidad}}">{{producto.presentacion_producto}} x <span>{{producto.precio_producto}}</span></p>
+                            <p id="emprendedor_{{producto.contador}}">Emprendedor: {{producto.emprendedor_unidad}}</p>
+                            <p id="unidad_{{producto.contador}}">{{producto.presentacion_producto}} x <span>{{producto.precio_producto}}</span></p>
                         </div>
-                        <input type="hidden" id="precio_{{producto.codigo_unidad}}" value="{{producto.precio_producto}}">
-                        <input type="hidden" id="stock_{{producto.codigo_unidad}}" value="{{producto.cantidad_disponible}}">
+                        <input type="hidden" id="precio_{{producto.contador}}" value="{{producto.precio_producto}}">
+                        <input type="hidden" id="stock_{{producto.contador}}" value="{{producto.cantidad_disponible}}">
                         <div class="contenedor_cantidad">
                             <div class="cantidad">
-                                <button id="resta_{{producto.codigo_unidad}}" class="menos"><i class="lni lni-minus"></i></button>
-                                <input type="text" class="inputs" id="cantidad_{{producto.codigo_unidad}}" readonly value="1">
-                                <button id="suma_{{producto.codigo_unidad}}" class="mas"><i class="lni lni-plus"></i></button>
+                                <button id="resta_{{producto.contador}}" class="menos"><i class="lni lni-minus"></i></button>
+                                <input type="text" class="inputs" id="cantidad_{{producto.contador}}" readonly value="1">
+                                <button id="suma_{{producto.contador}}" class="mas"><i class="lni lni-plus"></i></button>
                             </div>
                             <div id="cont_subtotal">
                                 <i class="lni lni-dollar"></i>
-                                <input type="text" class="inputs_numeros" id="subtotal_{{producto.codigo_unidad}}"  readonly value="{{producto.precio_producto}}">
+                                <input type="text" class="inputs_numeros" id="subtotal_{{producto.contador}}"  readonly value="{{producto.precio_producto}}">
                             </div>
                         </div>
-                        <button id="carrito_{{producto.codigo_unidad}}" class="btn_carrito">Agregar al Carrito</button>
+                        <button id="carrito_{{producto.contador}}" class="btn_carrito">Agregar al Carrito</button>
                     </div>
                 {% endfor %}
             {% endif %}
