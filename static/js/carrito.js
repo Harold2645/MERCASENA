@@ -206,15 +206,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await  respuesta.json();
 
             let mensaje = ''
+            let mensajesi = ''
+            let mensajeno = 'No hay estos productos: \n'
 
             if (Array.isArray(result)) {
                 result.forEach(produc => {
-                    mensaje += `- ${produc.nombre}\n`;
+                    mensajeno += `- ${produc.nombre}\n`;
+                    mensaje = mensajeno
                 });
             } else {
-                mensaje += "Te llegara un correo";
+                mensajesi += "Te llegara un correo";
+                mensaje = mensajesi
             }
-            alert("No hay estos productos: "/n,mensaje);
+            alert(mensaje);
+            window.location.href = '/'
 
     };
 
