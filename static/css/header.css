@@ -169,16 +169,6 @@ div#cuerpo2{
         margin: 0;
         padding-bottom: 10px;
     }
-.cartas2{
-    background-color: rgb(240, 240, 240);
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
-}
-    .cartas2 h2{
-        margin: 0;
-        padding-bottom: 10px;
-    }
 
 .contenedor_cantidad{
     display: flex;
@@ -259,14 +249,46 @@ div#cuerpo2{
 #forma_registro{
     display: none;
     margin: 15px;
+    background-color: white;
+    border-radius: 10px;
     
 }
     #forma_registro h2{
         margin: 0;
+        text-align: center;
+        color: black;
+        font-weight: bold;
+        padding: 10px;    
     }
     .inp_registro{
+        display: flex;
+        justify-content: center;
         padding-top: 5px;
+        margin: auto;
+        padding-top: 20px;
     }
+        .inp_registro input{
+            border-radius: 5px;
+            width: 250px;
+            padding: 10px;
+            border-color: #00324D;
+        }
+    #boton-confirmar{
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        padding: 10px;
+    }
+        .btn_confirmar{
+            margin-top: 10px;
+            color: white;
+            background-color: #00324D;
+            border: none;
+            padding: 8px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
    
 
 section#carrito{
