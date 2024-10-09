@@ -5,8 +5,11 @@ from email.mime.text import MIMEText
 
 @app.route('/enviocorreo')
 def enviocorreo(resultado):
-    usuario = 'mercasenacab@outlook.com' 
-    contrasena = 'SENAMerca2024' 
+    # usuario = 'mercasenacab@outlook.com' 
+    # contrasena = 'SENAMerca2024' 
+
+    usuario = 'mercasena40@gmail.com' 
+    contrasena = 'zcxq ujcd eomq ykxo' 
 
     destinatario = resultado[0][7]
 
@@ -36,7 +39,8 @@ def enviocorreo(resultado):
 
     mensaje.attach(MIMEText(cuerpo, 'html'))
 
-    smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
+    # smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
+    smtp = smtplib.SMTP('smtp.gmail.com', 587)
     smtp.starttls()
     smtp.login(usuario, contrasena)
     smtp.sendmail(usuario, destinatario, mensaje.as_string())
