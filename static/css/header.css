@@ -56,10 +56,13 @@ header#header{
 #contenedortitulo{
     display: flex;
     align-items: center;
-    color: white;
+    color: #f6f6f6;
     animation: slide-in 0.4s ease-in;
     padding: 10px;
 }
+    #contenidonombre{
+        font-size: 11px;
+    }
 figure#header_logo{
     width: 50px;
 }
@@ -136,7 +139,7 @@ figure#header_logo{
 div#cuerpo1{
     padding: 15px;
     display: grid;
-    grid-template-columns: repeat(2, 150px);
+    grid-template-columns: repeat(2, 180px);
     gap: 5px;
     font-size: clamp(8px, 100%, 18px);
 }
@@ -168,6 +171,7 @@ div#cuerpo2{
     .cartas h2{
         margin: 0;
         padding-bottom: 10px;
+	text-align: center;
     }
 
 .contenedor_cantidad{
@@ -176,10 +180,13 @@ div#cuerpo2{
 }
 
 #cont_info{
-    height: 70px;
+    height: 100px;
     width: 100%;
     text-align: center;
-    margin: 15px;
+    padding: 5px 0;
+    overflow: hidden;
+    overflow-y: auto;
+
 }
     #cont_info p span{
         color: #00324D;
