@@ -11,6 +11,15 @@ def index():
     else:
         return render_template('index.html', productos=productos)
     
+@app.route('/catego/<cate>')
+def catego(cate):
+    productos = producto.consultar_productos_busqueda_categoria(cate)
+    if not productos:
+        mensaje = "!Por el momento, no hay productos disponibles!"
+        return render_template('index.html', mensaje=mensaje)
+    else:
+        return render_template('index.html', productos=productos)
+    
 @app.route("/uploads/<nombre>")
 def uploads(nombre):
     return send_from_directory(app.config['CARPETAU'],nombre)

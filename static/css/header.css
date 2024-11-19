@@ -83,13 +83,21 @@ figure#header_logo{
     font-size: 35px;
     cursor: pointer;
 }
+#categorias{
+    padding: 75px 0 0 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    align-items: center;
+    text-align: center;
+}
+    #categorias a{
+        padding: 15px 0;
+    }
 
 #cuerpo{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-top: 75px;
     position: relative;
     z-index: 4;
 }
@@ -133,8 +141,6 @@ figure#header_logo{
         padding: 10px;
         border: none;
     }
-
-
 
 div#cuerpo1{
     padding: 15px;
@@ -455,6 +461,18 @@ footer{
 
 
 @media only screen and (min-width: 768px){
+    #cuerpote{
+        display: flex;
+    }
+    #cuerpo{
+        padding: 75px;
+        width: 80%;
+    }
+    #categorias{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+    }
     div#cuerpo1{
         grid-template-columns: repeat(3, 180px);
         gap: 15px;
