@@ -13,16 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
         total: 0
     };
 
-    // Intentar cargar el carrito guardado
     const carritoGuardado = sessionStorage.getItem('carrito');
     if (carritoGuardado) {
         try {
-            // Verifica si la cadena es un JSON válido
             const carritoParsed = JSON.parse(carritoGuardado);
-            Object.assign(carrito, carritoParsed); // Recuperamos el carrito guardado
+            Object.assign(carrito, carritoParsed);
         } catch (error) {
             console.error('Error al recuperar el carrito desde sessionStorage', error);
-            // Si el parsing falla, reiniciamos el carrito para evitar problemas
             sessionStorage.removeItem('carrito');
         }
     }
@@ -84,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 cantidadProducto.value = 1;
                 subtotalProducto.value = precioProducto;
 
-                // Guardar el carrito en sessionStorage solo si se actualiza
                 sessionStorage.setItem('carrito', JSON.stringify(carrito));
             } else {
                 alert("Debe seleccionar al menos una cantidad mayor a 0");
@@ -139,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
-                    // Actualizamos sessionStorage después de eliminar un producto
                     sessionStorage.setItem('carrito', JSON.stringify(carrito));
                     verCarrito();
                 });
@@ -155,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         totalCarrito.textContent = `Total: $${carrito.total}`;
     }
 
-    // Validación del formulario
     function validarFormulario(event) {
         event.preventDefault();
 
