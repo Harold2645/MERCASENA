@@ -2,58 +2,71 @@ document.addEventListener('DOMContentLoaded', () => {
     let codigo = '';
     let caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let largoCaracteres = caracteres.length;
-    for ( let i = 0; i < 8; i++ ) {
+    for (let i = 0; i < 8; i++) {
         codigo += caracteres.charAt(Math.floor(Math.random() * largoCaracteres));
-    
-    };
+    }
 
     const carrito = {
         codigo: codigo,
         cliente: {},
         productos: [],
         total: 0
-       
     };
+
+    // Intentar cargar el carrito guardado
+    const carritoGuardado = sessionStorage.getItem('carrito');
+    if (carritoGuardado) {
+        try {
+            // Verifica si la cadena es un JSON válido
+            const carritoParsed = JSON.parse(carritoGuardado);
+            Object.assign(carrito, carritoParsed); // Recuperamos el carrito guardado
+        } catch (error) {
+            console.error('Error al recuperar el carrito desde sessionStorage', error);
+            // Si el parsing falla, reiniciamos el carrito para evitar problemas
+            sessionStorage.removeItem('carrito');
+        }
+    }
 
     const btns_carrito = document.querySelectorAll('.btn_carrito');
     const formulario = document.getElementById('forma_registro');
     const abrirCarrito = document.querySelector('.abrir_carrito');
 
-    btns_carrito.forEach(btn=> {
+    btns_carrito.forEach(btn => {
         const codigoUnidad = btn.id.split('_')[1];
         const nombre = document.getElementById(`nombre_${codigoUnidad}`).textContent;
         const imgProducto = document.getElementById(`img_${codigoUnidad}`).dataset.nombre;
-        const emprendedor = document.getElementById(`emprendedor_${codigoUnidad}`).textContent
+        const emprendedor = document.getElementById(`emprendedor_${codigoUnidad}`).textContent;
         const precioUnidad = document.getElementById(`unidad_${codigoUnidad}`).textContent;
         const cantidadProducto = document.getElementById(`cantidad_${codigoUnidad}`);
         const subtotalProducto = document.getElementById(`subtotal_${codigoUnidad}`);
         const precioProducto = parseFloat(document.getElementById(`precio_${codigoUnidad}`).value);
         const stockProducto = parseInt(document.getElementById(`stock_${codigoUnidad}`).value);
+
         btn.addEventListener('click', () => {
             let cantidad = parseInt(cantidadProducto.value);
             let subtotal = (cantidad * precioProducto);
+
             if (cantidad > 0) {
                 let producto_existe = false;
-                for (i=0; i<carrito.productos.length; i++){
-                    if(carrito.productos[i].codigo == codigoUnidad){
+                for (let i = 0; i < carrito.productos.length; i++) {
+                    if (carrito.productos[i].codigo == codigoUnidad) {
                         let cantidadTotal = carrito.productos[i].cantidad + cantidad;
-                        if (cantidadTotal > stockProducto){
-                            alert("No hay mas unidades disponibles");
-                        }else{
+                        if (cantidadTotal > stockProducto) {
+                            alert("No hay más unidades disponibles");
+                        } else {
                             carrito.productos[i].cantidad += cantidad;
                             carrito.productos[i].subtotal += subtotal;
                             carrito.total += subtotal;
                         }
-                        
                         producto_existe = true;
                         break;
-                    };
-                };
+                    }
+                }
 
-                if(!producto_existe){
-                    if(cantidad > stockProducto){
-                        alert("No hay mas unidades disponibles")
-                    }else{
+                if (!producto_existe) {
+                    if (cantidad > stockProducto) {
+                        alert("No hay más unidades disponibles");
+                    } else {
                         carrito.productos.push({
                             codigo: codigoUnidad,
                             nombre: nombre,
@@ -67,34 +80,36 @@ document.addEventListener('DOMContentLoaded', () => {
                         carrito.total += subtotal;
                     }
                 }
+
                 cantidadProducto.value = 1;
                 subtotalProducto.value = precioProducto;
+
+                // Guardar el carrito en sessionStorage solo si se actualiza
+                sessionStorage.setItem('carrito', JSON.stringify(carrito));
             } else {
                 alert("Debe seleccionar al menos una cantidad mayor a 0");
             }
         });
     });
 
-
-    function verCarrito(){
+    function verCarrito() {
         const carritoPrincipal = document.getElementById('carrito');
         const carritoContenido = document.getElementById('carritoContenido');
         const totalCarrito = document.getElementById('totalCarrito');
-        const boton = document.getElementById('boton')
+        const boton = document.getElementById('boton');
 
         carritoPrincipal.style.display = 'block';
         carritoContenido.innerHTML = '';
         boton.innerHTML = '';
 
-        if(!carrito.productos.length > 0){
+        if (carrito.productos.length === 0) {
             carritoContenido.innerHTML = "<p>Aún no has agregado productos a tu carrito</p>";
-            
-        }else{
+        } else {
             carrito.productos.forEach(producto => {
                 carritoContenido.innerHTML += `
                     <div class="item">
                         <figure>
-                            <img  width="100" height="100" src="uploads/${producto.img}" alt="${producto.nombre}" >
+                            <img width="100" height="100" src="/uploads/${producto.img}" alt="${producto.nombre}">
                         </figure>
                         <div class="item_cont">
                             <h3>${producto.nombre}</h3>
@@ -109,44 +124,44 @@ document.addEventListener('DOMContentLoaded', () => {
                             </a>
                         </div>
                     </div>
-                    `;
+                `;
             });
 
             const botonesEliminar = document.querySelectorAll('.eliminar');
             botonesEliminar.forEach(boton => {
                 const codigoUnidad = boton.id;
                 boton.addEventListener('click', () => {
-                    for (let i= 0; i < carrito.productos.length; i++) {
-                        if(carrito.productos[i].codigo == codigoUnidad){
+                    for (let i = 0; i < carrito.productos.length; i++) {
+                        if (carrito.productos[i].codigo == codigoUnidad) {
                             carrito.total -= carrito.productos[i].subtotal;
                             carrito.productos.splice(i, 1);
                             break;
-                        };
-                    };
+                        }
+                    }
 
+                    // Actualizamos sessionStorage después de eliminar un producto
+                    sessionStorage.setItem('carrito', JSON.stringify(carrito));
                     verCarrito();
-
                 });
             });
 
             boton.innerHTML = `<button id="confirmar_carrito">Confirmar Compra</button>`;
-
             const btnConfirmar = document.querySelector('#confirmar_carrito');
-            btnConfirmar.addEventListener('click', ()=>{
+            btnConfirmar.addEventListener('click', () => {
                 formulario.style.display = 'block';
                 btnConfirmar.style.display = 'none';
             });
-        }; 
+        }
         totalCarrito.textContent = `Total: $${carrito.total}`;
-    };
+    }
 
-    function validarFormulario(event){
-
+    // Validación del formulario
+    function validarFormulario(event) {
         event.preventDefault();
 
         const inputCorreo = document.getElementById('correo_cliente');
         const inputNombre = document.getElementById('nombre_cliente');
-        const inputMovil = document.getElementById('movil_cliente')
+        const inputMovil = document.getElementById('movil_cliente');
         const errorCorreo = document.getElementById('error_correo');
         const errorNombre = document.getElementById('error_nombre');
         const errorMovil = document.getElementById('error_movil');
@@ -161,23 +176,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let datosCorrectos = true;
 
-        if(!patternCorreo){
-            errorCorreo.textContent = 'El correo electronico debe coincidir con este formato: example@dominio.com';
+        if (!patternCorreo) {
+            errorCorreo.textContent = 'El correo electrónico debe coincidir con este formato: example@dominio.com';
             datosCorrectos = false;
         }
 
-        if(!patternNombre){
+        if (!patternNombre) {
             errorNombre.textContent = 'Solo se permiten letras y espacios';
             datosCorrectos = false;
         }
 
-        if(!patternMovil){
-            errorMovil.textContent = 'Solo se permiten números de 10 digitos';
+        if (!patternMovil) {
+            errorMovil.textContent = 'Solo se permiten números de 10 dígitos';
             datosCorrectos = false;
         }
 
-        if(datosCorrectos){
-    
+        if (datosCorrectos) {
             let regex = /(^\w{1})|(\s+\w{1})/g;
 
             let correo = inputCorreo.value.toLowerCase();
@@ -189,46 +203,41 @@ document.addEventListener('DOMContentLoaded', () => {
             carrito.cliente['movil'] = movil;
 
             enviarCarrito();
-        };
-        
-    };
-    
-    async function enviarCarrito(){
-        const respuesta = await  fetch('http://152.200.166.250:40002/registrarcompra', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(carrito), 
-                
+        }
+    }
+
+    async function enviarCarrito() {
+        const respuesta = await fetch('http://192.168.0.11:4242/registrarCompra', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(carrito),
+        });
+
+        const result = await respuesta.json();
+
+        let mensaje = '';
+        let mensajesi = '';
+        let mensajeno = 'No hay estos productos: \n';
+
+        if (Array.isArray(result)) {
+            result.forEach(produc => {
+                mensajeno += `- ${produc.nombre}\n`;
+                mensaje = mensajeno;
             });
-            
-            const result = await  respuesta.json();
+        } else {
+            mensajesi += "Te llegará un correo";
+            mensaje = mensajesi;
+        }
+        alert(mensaje);
+        sessionStorage.clear();
+        window.location.href = '/';
+    }
 
-            let mensaje = ''
-            let mensajesi = ''
-            let mensajeno = 'No hay estos productos: \n'
+    formulario.addEventListener('submit', validarFormulario);
 
-            if (Array.isArray(result)) {
-                result.forEach(produc => {
-                    mensajeno += `- ${produc.nombre}\n`;
-                    mensaje = mensajeno
-                });
-            } else {
-                mensajesi += "Te llegara un correo";
-                mensaje = mensajesi
-            }
-            alert(mensaje);
-            window.location.href = '/'
-
-    };
-
-
-    formulario.addEventListener('submit', validarFormulario)
-
-    abrirCarrito.addEventListener('click', ()=>{
+    abrirCarrito.addEventListener('click', () => {
         verCarrito();
     });
-    
-
 });
