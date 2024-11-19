@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function enviarCarrito() {
-        const respuesta = await fetch('http://192.168.0.11:4242/registrarCompra', {
+        const respuesta = await fetch('http://152.200.166.250:40002/registrarCompra', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
