@@ -220,13 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 mensajeno += `- ${produc.nombre}\n`;
                 mensaje = mensajeno;
             });
-        } else {
-            mensajesi += "Te llegará un correo";
-            mensaje = mensajesi;
+            alert(mensaje);
         }
-        alert(mensaje);
         sessionStorage.clear();
-        window.location.href = '/';
+        window.location.href = '/confirmacion';
     }
 
     formulario.addEventListener('submit', validarFormulario);
