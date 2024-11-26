@@ -292,13 +292,17 @@ div#cuerpo2{
         margin-top: 10px;
         padding: 10px;
     }
+    #proceso{
+        color: black;
+        display: none;
+    }
         .btn_confirmar{
             margin-top: 10px;
             color: white;
             background-color: #00324D;
             border: none;
-            padding: 8px;
-            font-size: 12px;
+            padding: 15px;
+            font-size: 15px;
             border-radius: 5px;
             cursor: pointer;
         }

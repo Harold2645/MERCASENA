@@ -201,6 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function enviarCarrito() {
+
+        const btn_Confirmar = document.getElementById('confirmar');
+        const proceso = document.getElementById('proceso');
+
+        btn_Confirmar.style.display = 'none';
+        proceso.style.display = 'block';
+
         const respuesta = await fetch('http://152.200.166.250:40002/registrarCompra', {
             method: 'POST',
             headers: {
